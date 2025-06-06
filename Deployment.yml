@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-web-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-web-app
+  template:
+    metadata:
+      labels:
+        app: spring-web-app
+    spec:
+      containers:
+        - name: pdp-ui
+          image: akhilkm02/spring-web-app:latest  # Replace with your image path
+          ports:
+            - containerPort: 8080

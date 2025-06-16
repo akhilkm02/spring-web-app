@@ -130,7 +130,7 @@
     <div class="container">
         <h1>Hello!</h1>
         <img src="https://via.placeholder.com/180/83a4d4/FFFFFF?text=👋" alt="Waving Hand" class="hello-image">
-        <p class="subtitle">Welcome to a little piece of the web.</p>
+        <p class="subtitle"><a href="${pageContext.request.contextPath}/greet"Welcome to a little piece of the web.</a></p>
     </div>
 
     <div class="bubble"></div>

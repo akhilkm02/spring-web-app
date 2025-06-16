@@ -4,140 +4,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <title>Welcome to Our Page!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden; /* Prevent scrollbars due to full-screen elements */
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background: linear-gradient to bottom right, #83a4d4, #ebf8e1; /* Soft gradient background */
-            font-family: 'Montserrat', sans-serif;
-            color: #333;
-            overflow: hidden; /* Hide overflow from image animation */
-        }
-
-        .container {
+            min-height: 100vh; /* Ensure it covers the entire viewport height */
+            background: linear-gradient(135deg, #a8c0ff, #3f2b96); /* Elegant gradient background */
+            color: #fff;
             text-align: center;
-            background-color: #ffffff;
-            padding: 40px 60px;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             position: relative;
-            z-index: 1; /* Ensure container is above background elements */
-            overflow: hidden; /* For potential internal animations */
-            transition: transform 0.3s ease-in-out;
         }
 
-        .container:hover {
-            transform: translateY(-5px);
+        .background-image-left,
+        .background-image-right {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6; /* Slightly transparent */
+            z-index: 0; /* Behind the content */
+            animation: panBackground 20s linear infinite alternate; /* Smooth panning effect */
+        }
+
+        .background-image-left {
+            left: 0;
+            background-image: url('https://images.unsplash.com/photo-1542435503-956c469947f6?fit=crop&w=800&q=80'); /* Replace with your image URL */
+            animation-delay: 0s;
+        }
+
+        .background-image-right {
+            right: 0;
+            background-image: url('https://images.unsplash.com/photo-1517487881594-2787fef5ee43?fit=crop&w=800&q=80'); /* Replace with your image URL */
+            animation-delay: 10s; /* Start second image pan later */
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2; /* Above overlay and background images */
+            padding: 40px;
+            max-width: 900px;
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white box for content */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px); /* Frosted glass effect */
+            animation: fadeIn 1.5s ease-out forwards;
         }
 
         h1 {
-            font-size: 4.5em; /* Larger font size for impact */
+            font-size: 4em;
             margin-bottom: 20px;
-            color: #4CAF50; /* A friendly green */
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            animation: fadeInScale 1s ease-out forwards; /* Fade in and scale effect */
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
 
-        .hello-image {
-            width: 180px; /* Increased image size */
-            height: 180px;
-            border-radius: 50%; /* Make it round */
-            object-fit: cover; /* Ensure image covers the area */
+        p {
+            font-size: 1.4em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .gif-container {
             margin-top: 30px;
-            border: 6px solid #FFD700; /* Gold border for emphasis */
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-            animation: bounceIn 1.5s ease-out forwards; /* Bouncing entrance */
+            margin-bottom: 40px; /* Space below GIF */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .subtitle {
+        .welcome-gif {
+            max-width: 250px; /* Adjust GIF size as needed */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 1.2s ease-out forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #007bff; /* Bright blue button */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
             font-size: 1.2em;
-            color: #666;
-            margin-top: 25px;
-            animation: slideInUp 1.2s ease-out forwards; /* Slide up effect */
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        /* Keyframe Animations */
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        .cta-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
         }
 
-        @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.3) translateY(-100px);
-            }
-            60% {
-                opacity: 1;
-                transform: scale(1.1) translateY(10px);
-            }
-            80% {
-                transform: scale(0.9) translateY(-5px);
-            }
-            100% {
-                transform: scale(1) translateY(0);
-            }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* Optional: Add some floating background elements for extra flair */
-        .bubble {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            opacity: 0;
-            animation: floatBubble 10s infinite ease-in-out;
-            pointer-events: none; /* Allows clicks to pass through */
+        @keyframes panBackground {
+            0% { background-position: 0% center; }
+            100% { background-position: 100% center; }
         }
-
-        .bubble:nth-child(1) { width: 60px; height: 60px; left: 10%; top: 20%; animation-delay: 0s; }
-        .bubble:nth-child(2) { width: 40px; height: 40px; left: 25%; top: 70%; animation-delay: 2s; }
-        .bubble:nth-child(3) { width: 80px; height: 80px; left: 70%; top: 30%; animation-delay: 4s; }
-        .bubble:nth-child(4) { width: 50px; height: 50px; left: 85%; top: 60%; animation-delay: 6s; }
-        .bubble:nth-child(5) { width: 70px; height: 70px; left: 40%; top: 10%; animation-delay: 8s; }
-
-        @keyframes floatBubble {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            50% { transform: translateY(-50px) translateX(20px); opacity: 0.8; }
-            100% { transform: translateY(-100px) translateX(0); opacity: 0; }
-        }
-
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Hello!</h1>
-        <img src="https://via.placeholder.com/180/83a4d4/FFFFFF?text=👋" alt="Waving Hand" class="hello-image">
-        <p class="subtitle"><a href="${pageContext.request.contextPath}/greet"Welcome to a little piece of the web.</a></p>
-    </div>
+    <div class="background-image-left"></div>
+    <div class="background-image-right"></div>
 
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble">${message}</div>
-    <div class="bubble"><a href="${pageContext.request.contextPath}/greet">Greet Me</a></div>
+    <div class="overlay"></div>
+
+    <div class="content">
+        <h1>Welcome Aboard!</h1>
+        <p>We're thrilled to have you here. Explore our world and discover something amazing.</p>
+
+        <div class="gif-container">
+            <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2JpZ2Jvc3h6YWZmbW11NjVncmMxaWw2b2E2eTM3N3Rrb29jZDR5NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYGb2KjLhUqW7UQ/giphy.gif" alt="Welcome GIF" class="welcome-gif">
+        </div>
+
+        <a href="#" class="cta-button"><a href="${pageContext.request.contextPath}/greet">Get Started</a></a>
+    </div>
 
 </body>
 </html>

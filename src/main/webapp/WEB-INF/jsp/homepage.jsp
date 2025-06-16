@@ -4,150 +4,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Our Page!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Welcome to Adventure</title>
     <style>
-        body {
+        body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden; /* Prevent scrollbars due to full-screen elements */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Ensure it covers the entire viewport height */
-            background: linear-gradient(135deg, #a8c0ff, #3f2b96); /* Elegant gradient background */
-            color: #fff;
-            text-align: center;
-            position: relative;
-        }
-
-        .background-image-left,
-        .background-image-right {
-            position: absolute;
-            top: 0;
-            width: 50%;
             height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.6; /* Slightly transparent */
-            z-index: 0; /* Behind the content */
-            animation: panBackground 20s linear infinite alternate; /* Smooth panning effect */
-        }
-
-        .background-image-left {
-            left: 0;
-            background-image: url('https://images.unsplash.com/photo-1542435503-956c469947f6?fit=crop&w=800&q=80'); /* Replace with your image URL */
-            animation-delay: 0s;
-        }
-
-        .background-image-right {
-            right: 0;
-            background-image: url('https://images.unsplash.com/photo-1517487881594-2787fef5ee43?fit=crop&w=800&q=80'); /* Replace with your image URL */
-            animation-delay: 10s; /* Start second image pan later */
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .background {
+            position: relative;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
-            z-index: 1;
+            width: 100%;
+            background: linear-gradient(to bottom, #87CEEB 0%, #E0F7FA 100%);
+            overflow: hidden;
+        }
+
+        .snow-hill {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 30%;
+            background: white;
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 -10px 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .snow-hill:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -20%;
+            width: 140%;
+            height: 100%;
+            background: white;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .eagle {
+            position: absolute;
+            top: 30%;
+            left: -100px;
+            width: 100px;
+            height: 60px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60"><path d="M10,30 Q30,5 50,30 Q70,55 90,30" stroke="%23333" stroke-width="3" fill="none"/><path d="M50,30 L30,10 M50,30 L30,50" stroke="%23333" stroke-width="3"/></svg>');
+            background-repeat: no-repeat;
+            animation: fly 15s linear infinite;
+        }
+
+        @keyframes fly {
+            0% { transform: translateX(-100px) translateY(0) rotate(0deg); }
+            20% { transform: translateX(20vw) translateY(-20px) rotate(5deg); }
+            40% { transform: translateX(40vw) translateY(10px) rotate(-3deg); }
+            60% { transform: translateX(60vw) translateY(-15px) rotate(4deg); }
+            80% { transform: translateX(80vw) translateY(5px) rotate(-2deg); }
+            100% { transform: translateX(100vw) translateY(0) rotate(0deg); }
         }
 
         .content {
-            position: relative;
-            z-index: 2; /* Above overlay and background images */
-            padding: 40px;
-            max-width: 900px;
-            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white box for content */
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px); /* Frosted glass effect */
-            animation: fadeIn 1.5s ease-out forwards;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #333;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         h1 {
-            font-size: 4em;
+            font-size: 3em;
             margin-bottom: 20px;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            color: #2c3e50;
         }
 
         p {
-            font-size: 1.4em;
-            line-height: 1.6;
+            font-size: 1.2em;
             margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.6;
         }
 
-        .gif-container {
-            margin-top: 30px;
-            margin-bottom: 40px; /* Space below GIF */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .welcome-gif {
-            max-width: 250px; /* Adjust GIF size as needed */
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            animation: zoomIn 1.2s ease-out forwards;
-        }
-
-        .cta-button {
+        .get-started {
             display: inline-block;
             padding: 15px 30px;
-            background-color: #007bff; /* Bright blue button */
-            color: #fff;
+            background-color: #3498db;
+            color: white;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 30px;
             font-size: 1.2em;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .cta-button:hover {
-            background-color: #0056b3;
+        .get-started:hover {
+            background-color: #2980b9;
             transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .snowflake {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.8;
+            animation: fall linear infinite;
         }
 
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.5); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes panBackground {
-            0% { background-position: 0% center; }
-            100% { background-position: 100% center; }
+        @keyframes fall {
+            to { transform: translateY(100vh); }
         }
     </style>
 </head>
 <body>
-    <div class="background-image-left"></div>
-    <div class="background-image-right"></div>
+    <div class="background">
+        <div class="eagle"></div>
+        <div class="snow-hill"></div>
 
-    <div class="overlay"></div>
-
-    <div class="content">
-        <h1>Welcome Aboard!</h1>
-        <p>We're thrilled to have you here. Explore our world and discover something amazing.</p>
-
-        <div class="gif-container">
-            <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2JpZ2Jvc3h6YWZmbW11NjVncmMxaWw2b2E2eTM3N3Rrb29jZDR5NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYGb2KjLhUqW7UQ/giphy.gif" alt="Welcome GIF" class="welcome-gif">
+        <div class="content">
+            <h1>Welcome to the Adventure</h1>
+            <p>Soar to new heights with us, like the eagle crossing majestic snowy peaks. Discover breathtaking experiences that will leave you in awe of nature's beauty.</p>
+            <a href="${pageContext.request.contextPath}/greet" class="get-started">Get Started</a>
         </div>
-
-        <a href="#" class="cta-button"><a href="${pageContext.request.contextPath}/greet">Get Started</a></a>
     </div>
 
+    <script>
+        // Create snowflakes
+        function createSnowflakes() {
+            const snowflakesCount = 50;
+            for (let i = 0; i < snowflakesCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                snowflake.style.width = `${size}px`;
+                snowflake.style.height = `${size}px`;
+
+                // Random position
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                snowflake.style.top = `${Math.random() * -100}px`;
+
+                // Random animation duration between 5s and 15s
+                const duration = Math.random() * 10 + 5;
+                snowflake.style.animationDuration = `${duration}s`;
+
+                // Random delay
+                snowflake.style.animationDelay = `${Math.random() * 5}s`;
+
+                document.querySelector('.background').appendChild(snowflake);
+            }
+        }
+
+        // Initialize when page loads
+        window.onload = function() {
+            createSnowflakes();
+        };
+    </script>
 </body>
 </html>

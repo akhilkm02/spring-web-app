@@ -20,7 +20,7 @@ public class HomeController {
     public ModelAndView welcomePageHome() {
         ModelAndView model = new ModelAndView();
         model.addObject("message", "Hello from Spring MVC!");
-        model.setViewName("welcome"); // Corresponds to welcome.jsp
+        model.setViewName("homepage"); // Corresponds to welcome.jsp
         return model;
     }
 

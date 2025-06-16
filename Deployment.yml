@@ -13,7 +13,7 @@ spec:
         app: spring-web-app
     spec:
       containers:
-        - name: pdp-ui
+        - name: spring-web-app
           image: akhilkm02/spring-web-app:latest  # Replace with your image path
           ports:
             - containerPort: 8080
